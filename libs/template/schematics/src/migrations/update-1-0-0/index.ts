@@ -1,10 +1,11 @@
 import { chain, Rule, Tree } from '@angular-devkit/schematics';
-import { findNodes, formatFiles } from '@nrwl/workspace';
-import { insert, insertImport, replaceNodeValue } from '@nrwl/workspace/src/utils/ast-utils';
+import { findNodes } from '@schematics/angular/utility/ast-utils';
 import * as ts from 'typescript';
 
 import { createRemoveChange } from '../../common/utils/changes';
 import { visitTSSourceFiles } from '../../common/utils/visitors';
+import { replaceNodeValue } from '../../common/utils/replace-node-value';
+import { insert, insertImport } from '../../common/utils/insert';
 
 const renames: Record<string, string | [string, string]> = {
   LetModule: '@rx-angular/template/let',
@@ -83,7 +84,6 @@ export default function (): Rule {
         replaceUnpatchEventsModule(sourceFile);
       });
     },
-    formatFiles(),
   ]);
 }
 
