@@ -34,6 +34,18 @@ export default function (): Rule {
           return;
         }
 
+        /* Remove old imports. */
+        const removeChanges = findImportSpecifiers(sourceFile, imports).map(
+          ({ importDeclaration }) => {
+            return createRemoveChange(
+              sourceFile,
+              importDeclaration,
+              importDeclaration.getStart(),
+              importDeclaration.getFullText()
+            );
+          }
+        );
+
         /* Insert new imports. */
         const insertChanges = findImportSpecifiers(sourceFile, imports).map(
           ({ importSpecifier }) => {
@@ -46,20 +58,8 @@ export default function (): Rule {
             );
           }
         );
-        insert(tree, sourceFile.fileName, insertChanges);
 
-        /* Remove old imports. */
-        const removeChanges = findImportSpecifiers(
-          sourceFile,
-          imports
-        ).map(({ importDeclaration }) =>
-          createRemoveChange(
-            sourceFile,
-            importDeclaration,
-            importDeclaration.pos,
-            importDeclaration.getFullText()
-          )
-        );
+        insert(tree, sourceFile.fileName, insertChanges);
         insert(tree, sourceFile.fileName, removeChanges);
       });
     },
