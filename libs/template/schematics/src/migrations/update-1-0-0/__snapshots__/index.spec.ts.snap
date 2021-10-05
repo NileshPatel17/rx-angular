@@ -61,6 +61,7 @@ import { UnpatchDirective } from '@rx-angular/template/unpatch';
         imports: [
           BrowserModule,
           UnpatchModule,
+        ],
         providers: [],
         bootstrap: [AppComponent]
       })
@@ -84,6 +85,7 @@ import { UnpatchModule } from '@rx-angular/template/unpatch';
         imports: [
           BrowserModule,
           UnpatchModule,
+        ],
         providers: [],
         bootstrap: [AppComponent]
       })
@@ -107,6 +109,7 @@ import { UnpatchModule } from '@rx-angular/template/unpatch';
         imports: [
           BrowserModule,
           UnpatchModule,
+        ],
         providers: [],
         bootstrap: [AppComponent]
       })

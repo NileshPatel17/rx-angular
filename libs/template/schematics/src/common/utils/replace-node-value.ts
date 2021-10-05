@@ -14,7 +14,7 @@ export function replaceNodeValue(
     new ReplaceChange(
       modulePath,
       node.getStart(node.getSourceFile()),
-      node.getFullText(),
+      node.getText(),
       content
     ),
   ]);
